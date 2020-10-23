@@ -115,3 +115,18 @@ SyntaxError (/home/o-o/projects/rest-api-tdd/app/controllers/articles_controller
   
 app/controllers/articles_controller.rb:4: syntax error, unexpected ':', expecting `end'
 app/controllers/articles_controller.rb:4: syntax error, unexpected ':', expecting `end'
+Started GET "/articles" for 127.0.0.1 at 2020-10-23 23:50:39 +0100
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/controllers/articles_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 1896)
+
+
+Started GET "/articles" for 127.0.0.1 at 2020-10-23 23:51:03 +0100
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/controllers/articles_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.1ms | Allocations: 793)
+
+
