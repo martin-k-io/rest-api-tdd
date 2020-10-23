@@ -130,3 +130,83 @@ Processing by ArticlesController#index as HTML
 Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.1ms | Allocations: 793)
 
 
+Started GET "/articles" for 127.0.0.1 at 2020-10-24 00:30:35 +0100
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 113ms (ActiveRecord: 0.2ms | Allocations: 68437)
+
+
+  
+NameError (undefined local variable or method `param' for #<ArticlesController:0x000055cc264508b0>
+Did you mean?  params
+               params=
+               @_params):
+  
+app/controllers/articles_controller.rb:5:in `index'
+Started GET "/articles" for 127.0.0.1 at 2020-10-24 00:31:13 +0100
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/articles_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (1.6ms)
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 0.4ms | Allocations: 4151)
+
+
+Started GET "/articles?page%5Bnumber%5D=1&page%5Bsize%5D=25" for 127.0.0.1 at 2020-10-24 00:31:26 +0100
+Processing by ArticlesController#index as HTML
+  Parameters: {"page"=>{"number"=>"1", "size"=>"25"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 936)
+
+
+  
+NoMethodError (undefined method `to_i' for #<ActionController::Parameters:0x000055cc26539920>
+Did you mean?  to_s
+               to_h):
+  
+app/controllers/articles_controller.rb:4:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mArticle Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "articles" WHERE "articles"."slug" = ? LIMIT ?[0m  [["slug", "article-title-1"], ["LIMIT", 1]]
+  [1m[36mArticle Create (0.3ms)[0m  [1m[32mINSERT INTO "articles" ("title", "content", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Article title 1"], ["content", "Article content 1"], ["slug", "article-title-1"], ["created_at", "2020-10-23 23:34:15.902675"], ["updated_at", "2020-10-23 23:34:15.902675"]]
+  [1m[35m (8.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mArticle Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "articles" WHERE "articles"."slug" = ? LIMIT ?[0m  [["slug", "article-title-2"], ["LIMIT", 1]]
+  [1m[36mArticle Create (0.3ms)[0m  [1m[32mINSERT INTO "articles" ("title", "content", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Article title 2"], ["content", "Article content 2"], ["slug", "article-title-2"], ["created_at", "2020-10-23 23:34:15.916458"], ["updated_at", "2020-10-23 23:34:15.916458"]]
+  [1m[35m (8.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mArticle Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "articles" WHERE "articles"."slug" = ? LIMIT ?[0m  [["slug", "article-title-3"], ["LIMIT", 1]]
+  [1m[36mArticle Create (0.2ms)[0m  [1m[32mINSERT INTO "articles" ("title", "content", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Article title 3"], ["content", "Article content 3"], ["slug", "article-title-3"], ["created_at", "2020-10-23 23:34:15.929478"], ["updated_at", "2020-10-23 23:34:15.929478"]]
+  [1m[35m (7.5ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/articles" for 127.0.0.1 at 2020-10-24 00:34:18 +0100
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/articles_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (1.3ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.4ms | Allocations: 6971)
+
+
+Started GET "/articles?page=1&per_page=1" for 127.0.0.1 at 2020-10-24 00:34:58 +0100
+Processing by ArticlesController#index as HTML
+  Parameters: {"page"=>"1", "per_page"=>"1"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 0]]
+  ↳ app/controllers/articles_controller.rb:7:in `index'
+[active_model_serializers]   [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "articles"[0m
+[active_model_serializers]   ↳ app/controllers/articles_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (5.73ms)
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.3ms | Allocations: 4071)
+
+
+Started GET "/articles?page=2&per_page=1" for 127.0.0.1 at 2020-10-24 00:35:04 +0100
+Processing by ArticlesController#index as HTML
+  Parameters: {"page"=>"2", "per_page"=>"1"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `index'
+[active_model_serializers]   [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "articles"[0m
+[active_model_serializers]   ↳ app/controllers/articles_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (5.29ms)
+Completed 200 OK in 10ms (Views: 8.6ms | ActiveRecord: 0.5ms | Allocations: 2731)
+
+
