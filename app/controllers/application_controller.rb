@@ -4,7 +4,30 @@ class ApplicationController < ActionController::API
   rescue_from UserAuthenticator::AuthenticationError, with: :authentication_error
   rescue_from AuthorizationError, with: :authorization_error
 
+  # All resources requiring authorization approach
+  # instead of all accessible but only specific ones authorizable
+  before_action :authorize!
+
   private
+
+  def authorize!
+    raise AuthorizationError unless current_user
+  end
+
+  def access_token
+    # request is an Object accesible in all controllers 
+    # having a method authoirzation returning the value
+    # of the request header with the same name
+
+    # If the authentication is invalid, use safe operator &
+    # to return nil instead of raising an exception
+    provided_token = request.authorization&.gsub(/\ABearer\s/, '')
+    @access_token = AccessToken.find_by(token: provided_token)
+  end
+
+  def current_user
+    @current_user = access_token&.user
+  end
 
   def authentication_error
     error = {
