@@ -20,7 +20,8 @@ gem 'octokit', '~> 4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :production do
-  gem 'pg' #postgress db required by heroku by default
+  gem 'pg', '~> 0.20' 
+  gem 'rails_12factor'
 end
 
 group :development, :test do
