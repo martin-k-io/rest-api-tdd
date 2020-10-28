@@ -150,7 +150,7 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
   describe '#update' do
-    let(:user) { create :user}
+    let(:user) { create :user }
     let(:article) { create :article, user: user }
     let(:access_token) { user.create_access_token }
     
@@ -215,7 +215,6 @@ RSpec.describe ArticlesController, type: :controller do
       end
 
       context 'when successful request sent' do
-        let(:access_token) { create :access_token }
         before { request.headers['authorization'] = "Bearer #{access_token.token}" }
 
         let(:valid_attributes) do
@@ -230,11 +229,13 @@ RSpec.describe ArticlesController, type: :controller do
           }
         end
 
-        subject { patch :update, params: valid_attributes }
+        subject do
+          patch :update, params: valid_attributes.merge(id: article.id)
+        end
 
-        it 'should return 201 status code' do
+        it 'should return 200 status code' do
           subject
-          expect(response).to have_http_status(:created)
+          expect(response).to have_http_status(:ok)
         end
 
         it 'should have proper json body' do
