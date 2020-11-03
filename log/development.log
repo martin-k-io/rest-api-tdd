@@ -367,3 +367,283 @@ FOREIGN KEY ("user_id")
   [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/articles?page=2&per_page=1" for 127.0.0.1 at 2020-10-28 21:35:12 +0000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Parameters: {"page"=>"2", "per_page"=>"1"}
+  [1m[36mAccessToken Load (1.5ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  ↳ app/controllers/articles_controller.rb:9:in `index'
+[active_model_serializers]   [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "articles"[0m
+[active_model_serializers]   ↳ app/controllers/articles_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (3.07ms)
+Completed 200 OK in 19ms (Views: 12.5ms | ActiveRecord: 2.9ms | Allocations: 12944)
+
+
+Started GET "/articles" for 127.0.0.1 at 2020-10-28 21:35:20 +0000
+Processing by ArticlesController#index as HTML
+  [1m[36mAccessToken Load (0.2ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/articles_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (3.23ms)
+Completed 200 OK in 12ms (Views: 9.8ms | ActiveRecord: 0.6ms | Allocations: 2736)
+
+
+Started GET "/articles?page%5Bnumber%5D=1&page%5Bsize%5D=25" for 127.0.0.1 at 2020-10-28 21:36:01 +0000
+Processing by ArticlesController#index as HTML
+  Parameters: {"page"=>{"number"=>"1", "size"=>"25"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 933)
+
+
+  
+NoMethodError (undefined method `to_i' for #<ActionController::Parameters:0x00007ff508019ca8>
+Did you mean?  to_s
+               to_h):
+  
+app/controllers/articles_controller.rb:6:in `index'
+Started GET "/favicon.ico" for 127.0.0.1 at 2020-10-28 21:36:01 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/comments" for 127.0.0.1 at 2020-10-28 21:36:38 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/comments"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/articles/1comments" for 127.0.0.1 at 2020-10-28 21:36:55 +0000
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1comments"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:13:in `show'
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::JsonApi (0.72ms)
+Completed 200 OK in 6ms (Views: 3.0ms | ActiveRecord: 0.4ms | Allocations: 1795)
+
+
+Started GET "/articles/1/comments" for 127.0.0.1 at 2020-10-28 21:36:59 +0000
+Processing by CommentsController#index as HTML
+  Parameters: {"article_id"=>"1"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:29:in `load_article'
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ? LIMIT ? OFFSET ?[0m  [["article_id", 1], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/comments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (0.56ms)
+Completed 200 OK in 16ms (Views: 3.5ms | ActiveRecord: 1.2ms | Allocations: 5287)
+
+
+Started GET "/articles/2/comments" for 127.0.0.1 at 2020-10-28 21:37:06 +0000
+Processing by CommentsController#index as HTML
+  Parameters: {"article_id"=>"2"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:29:in `load_article'
+  [1m[36mAccessToken Load (0.2ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ? LIMIT ? OFFSET ?[0m  [["article_id", 2], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/comments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (0.56ms)
+Completed 200 OK in 8ms (Views: 4.6ms | ActiveRecord: 0.5ms | Allocations: 2605)
+
+
+Started GET "/articles/20/comments" for 127.0.0.1 at 2020-10-28 21:37:09 +0000
+Processing by CommentsController#index as HTML
+  Parameters: {"article_id"=>"20"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:29:in `load_article'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 597)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=20):
+  
+app/controllers/comments_controller.rb:29:in `load_article'
+Started GET "/articles/" for 127.0.0.1 at 2020-10-28 21:37:30 +0000
+Processing by ArticlesController#index as HTML
+  [1m[36mAccessToken Load (0.2ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/articles_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (2.28ms)
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 0.4ms | Allocations: 2711)
+
+
+Started POST "/login" for ::1 at 2020-10-28 21:40:28 +0000
+Processing by AccessTokensController#create as */*
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 401 Unauthorized in 3ms (Views: 2.5ms | ActiveRecord: 0.1ms | Allocations: 1278)
+
+
+Started GET "/articles?page=1&per_page=5" for ::1 at 2020-10-28 21:41:12 +0000
+Processing by ArticlesController#index as */*
+  Parameters: {"page"=>"1", "per_page"=>"5"}
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/controllers/articles_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (0.88ms)
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.2ms | Allocations: 2721)
+
+
+Started POST "/login" for ::1 at 2020-10-28 21:42:00 +0000
+Processing by AccessTokensController#create as */*
+  Parameters: {"code"=>"invalid", "access_token"=>{}}
+  [1m[36mAccessToken Load (0.4ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.33ms)
+Completed 401 Unauthorized in 247ms (Views: 4.6ms | ActiveRecord: 0.4ms | Allocations: 4455)
+
+
+Started POST "/login" for ::1 at 2020-10-28 21:43:15 +0000
+Processing by AccessTokensController#create as */*
+  Parameters: {"data"=>{"attributes"=>{"login"=>"jsmith", "password"=>"[FILTERED]"}}, "access_token"=>{}}
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.15ms)
+Completed 401 Unauthorized in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 957)
+
+
+Started POST "/login" for ::1 at 2020-10-28 21:43:32 +0000
+Processing by AccessTokensController#create as */*
+  Parameters: {"data"=>{"attributes"=>{"login"=>"jsmith", "password"=>"[FILTERED]"}}, "access_token"=>{}}
+  [1m[36mAccessToken Load (0.2ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" = ? LIMIT ?[0m  [["token", "{{access_token}}"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 401 Unauthorized in 5ms (Views: 4.4ms | ActiveRecord: 0.2ms | Allocations: 938)
+
+
+Started POST "/login" for ::1 at 2020-10-28 21:44:16 +0000
+Processing by AccessTokensController#create as */*
+  Parameters: {"data"=>{"attributes"=>{"login"=>"jsmith", "password"=>"[FILTERED]"}}, "access_token"=>{}}
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 401 Unauthorized in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 957)
+
+
+Started POST "/login" for ::1 at 2020-10-28 21:44:32 +0000
+Processing by AccessTokensController#create as */*
+  Parameters: {"data"=>{"attributes"=>{"login"=>"jsmith", "password"=>"[FILTERED]"}}, "access_token"=>{}}
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" = ? LIMIT ?[0m  [["token", "{{access_token}}"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `access_token'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 401 Unauthorized in 1ms (Views: 0.8ms | ActiveRecord: 0.1ms | Allocations: 813)
+
+
+Started POST "/sign_up" for ::1 at 2020-10-28 21:45:10 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/sign_up"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+DEPRECATION WARNING: Using `bin/rake routes` is deprecated and will be removed in Rails 6.1. Use `bin/rails routes` instead.
+ (called from block in execute at /usr/share/rvm/rubies/ruby-2.7.0/lib/ruby/gems/2.7.0/gems/rake-13.0.1/lib/rake/task.rb:281)
+Started POST "/login" for ::1 at 2020-11-03 21:30:37 +0000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AccessTokensController#create as */*
+  Parameters: {"code"=>"invalid", "access_token"=>{}}
+[31mUnpermitted parameter: :access_token[0m
+  [1m[36mAccessToken Load (1.3ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `access_token'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.28ms)
+Completed 401 Unauthorized in 220ms (Views: 8.2ms | ActiveRecord: 1.6ms | Allocations: 3929)
+
+
+Started POST "/login" for ::1 at 2020-11-03 21:30:45 +0000
+Processing by AccessTokensController#create as */*
+  Parameters: {"data"=>{"attributes"=>{"login"=>"jsmith", "password"=>"[FILTERED]"}}, "access_token"=>{}}
+[31mUnpermitted parameters: :data, :access_token[0m
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `access_token'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 401 Unauthorized in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 1032)
+
+
+Started POST "/login" for ::1 at 2020-11-03 21:31:01 +0000
+Processing by AccessTokensController#create as */*
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `access_token'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 401 Unauthorized in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 991)
+
+
+Started POST "/login" for ::1 at 2020-11-03 21:31:06 +0000
+Processing by AccessTokensController#create as */*
+  Parameters: {"data"=>{"attributes"=>{"login"=>"jsmith", "password"=>"[FILTERED]"}}, "access_token"=>{}}
+[31mUnpermitted parameters: :data, :access_token[0m
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" = ? LIMIT ?[0m  [["token", "{{access_token}}"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `access_token'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 401 Unauthorized in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
