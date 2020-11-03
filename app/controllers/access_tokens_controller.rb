@@ -15,6 +15,11 @@ class AccessTokensController < ApplicationController
   private
 
   def authentication_params
-    params.permit(:code).to_h.symbolize_keys
+    # ensures consistent results
+    (standard_auth_params || params.permit(:code)).to_h.symbolize_keys
+  end
+
+  def standard_auth_params
+    params.dig(:data, :attributes)&.permit(:login, :password)
   end
 end
