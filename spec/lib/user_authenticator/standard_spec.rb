@@ -26,8 +26,16 @@ describe UserAuthenticator::Standard do
       it_behaves_like 'invalid authentication'
     end
 
-    context 'when invalid auth' do
+    context 'when success auth' do
+      let(:user) { create :user, login: 'jsmith', password: 'password' }
 
+      # creates the user before each test case
+      before { user }
+
+      it 'should set the user found in db' do
+        expect { subject }.not_to change{ User.count }
+        expect(authenticator.user).to eq(user)
+      end
     end
   end
 end
