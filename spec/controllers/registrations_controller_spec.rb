@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe RegistrationsController do
+describe RegistrationsController, type: :controller do
   describe '#create' do
-    subject { post :ceate, params: params }
+    subject { post :create, params: params }
 
     context 'when invalid data provided' do
       let(:params) do
