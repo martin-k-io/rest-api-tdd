@@ -7,7 +7,7 @@ RSpec.describe AccessTokensController, type: :controller do
         data: {
           attributes: {
             login: "jsmith",
-            passowrd: "secret"
+            password: "secret"
           }
         }
       }

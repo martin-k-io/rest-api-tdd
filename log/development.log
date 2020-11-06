@@ -657,3 +657,52 @@ Migrating to AddEncryptedPasswordToUsers (20201103221323)
   [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/sign_up" for ::1 at 2020-11-06 18:17:35 +0000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RegistrationsController#create as */*
+  Parameters: {"data"=>{"attributes"=>{"login"=>""}}, "registration"=>{"data"=>{"attributes"=>{"login"=>""}}}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."login" = ? LIMIT ?[0m  [["login", ""], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[36mAccessToken Load (1.5ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" = ? LIMIT ?[0m  [["token", "{{access_token}}"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `access_token'
+[active_model_serializers] Rendered ErrorSerializer with ActiveModelSerializers::Adapter::JsonApi (2.02ms)
+Completed 422 Unprocessable Entity in 29ms (Views: 8.8ms | ActiveRecord: 2.7ms | Allocations: 15837)
+
+
+Started POST "/sign_up" for ::1 at 2020-11-06 18:17:52 +0000
+Processing by RegistrationsController#create as */*
+  Parameters: {"data"=>{"attributes"=>{"login"=>"", "password"=>"[FILTERED]"}}, "registration"=>{"data"=>{"attributes"=>{"login"=>"", "password"=>"[FILTERED]"}}}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."login" = ? LIMIT ?[0m  [["login", ""], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" = ? LIMIT ?[0m  [["token", "{{access_token}}"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `access_token'
+[active_model_serializers] Rendered ErrorSerializer with ActiveModelSerializers::Adapter::JsonApi (0.15ms)
+Completed 422 Unprocessable Entity in 14ms (Views: 2.7ms | ActiveRecord: 0.3ms | Allocations: 3944)
+
+
+Started POST "/sign_up" for ::1 at 2020-11-06 18:28:00 +0000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RegistrationsController#create as */*
+  Parameters: {"data"=>{"attributes"=>{"login"=>"", "password"=>"[FILTERED]"}}, "registration"=>{"data"=>{"attributes"=>{"login"=>"", "password"=>"[FILTERED]"}}}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."login" = ? LIMIT ?[0m  [["login", ""], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[36mAccessToken Load (0.1ms)[0m  [1m[34mSELECT "access_tokens".* FROM "access_tokens" WHERE "access_tokens"."token" = ? LIMIT ?[0m  [["token", "{{access_token}}"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `access_token'
+[active_model_serializers] Rendered ErrorSerializer with ActiveModelSerializers::Adapter::JsonApi (0.56ms)
+Completed 422 Unprocessable Entity in 28ms (Views: 9.3ms | ActiveRecord: 1.2ms | Allocations: 16348)
+
+
